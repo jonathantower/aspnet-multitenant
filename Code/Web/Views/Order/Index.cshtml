@@ -1,0 +1,27 @@
+﻿@using MultiTenant.Web.Data
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Orders</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Order Date</th>
+            <th>Tenant ID</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (Order order in ViewBag.Orders)
+    {
+        <tr>
+            <td>@order.OrderId</td>
+            <td>@order.OrderDate</td>
+            <td>@order.TenantId</td>
+        </tr>
+    }
+    </tbody>
+</table>
