@@ -1,18 +1,18 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Options;
+using MultiTenant.Web.Options;
 
 namespace JwtAuthenticationHelper.Data
 {
     public partial class SharedDbContext : DbContext
     {
-        public SharedDbContext()
-        {
-        }
+        private readonly DatabaseOptions _options;
 
-        public SharedDbContext(DbContextOptions<SharedDbContext> options)
-            : base(options)
+        public SharedDbContext(IOptions<DatabaseOptions> options)
         {
+            this._options = options.Value;
         }
 
         public virtual DbSet<Tenant> Tenants { get; set; }
@@ -63,6 +63,11 @@ namespace JwtAuthenticationHelper.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Users_Users");
             });
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(_options.AuthConnectionString);
         }
     }
 }

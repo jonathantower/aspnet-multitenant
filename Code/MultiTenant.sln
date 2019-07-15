@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationHelper", "JwtAuthenticationHelper\JwtAuthenticationHelper.csproj", "{031FC838-6C97-4463-8564-751A132366C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenant.Web", "Web\MultiTenant.Web.csproj", "{0E40974C-559E-49F4-8BBC-84E4717C1FA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenant.Web", "Web\MultiTenant.Web.csproj", "{0E40974C-559E-49F4-8BBC-84E4717C1FA9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{CCF09B33-AABF-435D-B5C2-97C930818205}"
 EndProject

@@ -17,10 +17,10 @@ namespace MultiTenant.Web.Data
         private readonly HttpContext _http;
         private readonly ITenantHelper _tenantHelper;
 
-        public TenantDbContext(HttpContext httpContext,
+        public TenantDbContext(IHttpContextAccessor httpContext,
             ITenantHelper tenantHelper)
         {
-            this._http = httpContext;
+            this._http = httpContext.HttpContext;
             this._tenantHelper = tenantHelper;
         }
 
@@ -90,11 +90,12 @@ namespace MultiTenant.Web.Data
             });
 
             // Configure entity filter
-            //modelBuilder.Entity<Order>()
-            //    .HasQueryFilter(o =>
-            //        EF.Property<int>(o, "TenantId") == ClaimsHelper.GetClaim<int>(_http.User, "Tenant"));
+            modelBuilder.Entity<Order>()
+                .HasQueryFilter(o =>
+                    EF.Property<int>(o, "TenantId") 
+                    == ClaimsHelper.GetClaim<int>(_http.User, "Tenant"));
 
-            //SetGlobalQueryFilters(modelBuilder);
+            SetGlobalQueryFilters(modelBuilder);
         }
 
         private void SetGlobalQueryFilters(ModelBuilder modelBuilder)
